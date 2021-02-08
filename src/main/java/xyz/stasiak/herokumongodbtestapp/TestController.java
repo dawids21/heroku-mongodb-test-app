@@ -8,6 +8,7 @@ public class TestController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello";
+        String var = System.getenv("VAR");
+        return var != null ? var : "hello";
     }
 }
