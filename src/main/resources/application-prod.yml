@@ -1,6 +1,5 @@
 spring:
   data:
     mongodb:
-      uri:
-      database:
+      uri: ${MONGODB_URI}
 testVar: prod
