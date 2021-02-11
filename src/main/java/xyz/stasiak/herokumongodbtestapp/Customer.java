@@ -11,13 +11,16 @@ public class Customer {
 
     private String firstName;
     private String lastName;
+    private int rating;
 
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName) {
+    public Customer(String firstName, String lastName, int rating) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.rating = rating;
     }
 
     public String getId() {
@@ -44,8 +47,17 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
-        return String.format("Customer[id=%s, firstName='%s', lastName='%s']", id, firstName, lastName);
+        return "Customer{" + "id='" + id + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName +
+               '\'' + ", rating=" + rating + '}';
     }
 }
