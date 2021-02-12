@@ -3,6 +3,8 @@ package xyz.stasiak.herokumongodbtestapp;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+
 @Document
 public class Customer {
 
@@ -12,15 +14,16 @@ public class Customer {
     private String firstName;
     private String lastName;
     private int rating;
+    private Set<CreditCard> creditCards;
 
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, int rating) {
-        this.id = id;
+    public Customer(String firstName, String lastName, int rating, Set<CreditCard> creditCards) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.rating = rating;
+        this.creditCards = creditCards;
     }
 
     public String getId() {
@@ -55,9 +58,17 @@ public class Customer {
         this.rating = rating;
     }
 
+    public Set<CreditCard> getCreditCards() {
+        return creditCards;
+    }
+
+    public void setCreditCards(Set<CreditCard> creditCards) {
+        this.creditCards = creditCards;
+    }
+
     @Override
     public String toString() {
         return "Customer{" + "id='" + id + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName +
-               '\'' + ", rating=" + rating + '}';
+               '\'' + ", rating=" + rating + ", creditCards=" + creditCards + '}';
     }
 }

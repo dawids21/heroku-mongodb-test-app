@@ -12,6 +12,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,9 +46,9 @@ class CustomerRepositoryIT {
 
     @Test
     void should_get_customers_with_rating_between_given_values() {
-        customerRepository.save(new Customer("Dawid", "Stasiak", 4));
-        customerRepository.save(new Customer("Jan", "Nowak", 3));
-        customerRepository.save(new Customer("Jan", "Kowalski", 6));
+        customerRepository.save(new Customer("Dawid", "Stasiak", 4, Set.of()));
+        customerRepository.save(new Customer("Jan", "Nowak", 3, Set.of()));
+        customerRepository.save(new Customer("Jan", "Kowalski", 6, Set.of()));
 
         List<Customer> customers = customerRepository.findByRatingBetween(3, 7);
 
@@ -56,9 +57,9 @@ class CustomerRepositoryIT {
 
     @Test
     void should_find_customer_with_given_name() {
-        customerRepository.save(new Customer("Dawid", "Stasiak", 4));
-        customerRepository.save(new Customer("Jan", "Nowak", 1));
-        customerRepository.save(new Customer("Jan", "Kowalski", 6));
+        customerRepository.save(new Customer("Dawid", "Stasiak", 4, Set.of()));
+        customerRepository.save(new Customer("Jan", "Nowak", 1, Set.of()));
+        customerRepository.save(new Customer("Jan", "Kowalski", 6, Set.of()));
 
         Optional<Customer> customer = customerRepository.findByFirstName("Dawid");
 
