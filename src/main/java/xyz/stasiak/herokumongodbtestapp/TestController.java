@@ -12,12 +12,14 @@ import java.util.List;
 public class TestController {
 
     private final CustomerRepository customerRepository;
+    private final AddressRepository addressRepository;
 
     @Value("${testVar}")
     private String envVar;
 
-    public TestController(CustomerRepository customerRepository) {
+    public TestController(CustomerRepository customerRepository, AddressRepository addressRepository) {
         this.customerRepository = customerRepository;
+        this.addressRepository = addressRepository;
     }
 
     @GetMapping("/hello")
@@ -54,5 +56,23 @@ public class TestController {
     @GetMapping("/customer")
     public ResponseEntity<List<Customer>> getAllCustomers() {
         return ResponseEntity.ok(customerRepository.findAll());
+    }
+
+    @PostMapping("/address")
+    public ResponseEntity<Address> saveAddress(@RequestBody Address toSave) {
+        Address result = addressRepository.save(toSave);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/address/{id}")
+    public ResponseEntity<Address> getAddressById(@PathVariable String id) {
+        Address customer = addressRepository.findById(id)
+                                            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok(customer);
+    }
+
+    @GetMapping("/address")
+    public ResponseEntity<List<Address>> getAllAddresses() {
+        return ResponseEntity.ok(addressRepository.findAll());
     }
 }
